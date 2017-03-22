@@ -2,7 +2,6 @@ FROM microsoft/dotnet:1.1.0-sdk-msbuild
 
 MAINTAINER Julien Corioland, Microsoft (@jcorioland)
 
-COPY project.json ./
 COPY . /app
 WORKDIR /app
 
