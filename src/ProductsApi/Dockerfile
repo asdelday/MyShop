@@ -1,14 +1,15 @@
-FROM microsoft/dotnet:1.1.0-sdk-msbuild
+FROM microsoft/dotnet:latest
 
 MAINTAINER Julien Corioland, Microsoft (@jcorioland)
 
-COPY . /app
 WORKDIR /app
-
-ENV ASPNETCORE_URLS http://+:5000
+ENTRYPOINT ["dotnet", "run"]
 EXPOSE 5000
 
-RUN dotnet restore
-RUN dotnet build
+ENV ASPNETCORE_URLS http://+:5000
 
-ENTRYPOINT ["dotnet", "run"]
+COPY project.json ./
+RUN ["dotnet", "restore"]
+
+COPY . /app
+RUN ["dotnet", "build"]
