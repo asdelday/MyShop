@@ -8,7 +8,7 @@ WORKDIR /app
 ENV ASPNETCORE_URLS http://+:5000
 EXPOSE 5000
 
-RUN ["dotnet", "restore", "/app"]
-RUN dotnet build /app
+RUN dotnet restore
+RUN dotnet build
 
 ENTRYPOINT ["dotnet", "run"]
