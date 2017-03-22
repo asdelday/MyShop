@@ -2,14 +2,15 @@ FROM microsoft/dotnet:latest
 
 MAINTAINER Julien Corioland, Microsoft (@jcorioland)
 
+COPY project.json ./
+COPY . /app
 WORKDIR /app
-ENTRYPOINT ["dotnet", "run"]
-EXPOSE 5000
 
 ENV ASPNETCORE_URLS http://+:5000
+EXPOSE 5000
 
-COPY project.json ./
-RUN ["dotnet", "restore"]
 
-COPY . /app
-RUN ["dotnet", "build"]
+RUN dotnet restore
+RUN dotnet build
+
+ENTRYPOINT ["dotnet", "run"]
